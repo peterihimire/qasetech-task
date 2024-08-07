@@ -29,7 +29,7 @@ export const createTransaction = async (data: {
 export const findTransactionById = async (
   id: string
 ): Promise<ITransaction | null> => {
-  return TransactionModel.findOne({ _id: id }).exec();
+  return TransactionModel.findOne({ id: id }).exec();
 };
 
 /**

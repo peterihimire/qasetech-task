@@ -16,9 +16,7 @@ if (!MONGOURI) {
 const connectWithRetry = async () => {
   try {
     await mongoose.connect(MONGOURI, {
-      // dbName: "qasetech",
-      // useNewUrlParser: true,
-      // useUnifiedTopology: true,
+      dbName: "qasetech",
     });
     console.log("MongoDB connection was successful...");
   } catch (err) {
@@ -35,5 +33,3 @@ const startServer = async () => {
 };
 
 startServer();
-// const mongoURI =
-//   process.env.MONGODB_URI || "mongodb://localhost:27017/mydatabase";

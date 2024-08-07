@@ -38,11 +38,12 @@ export const addNewTransaction: RequestHandler = async (req, res, next) => {
 
     console.log("This is created transaction", createdTransaction);
     const transactionObject = createdTransaction.toObject();
+    const { _id, ...transactionData } = transactionObject;
 
     res.status(httpStatusCodes.CREATED).json({
       status: "success",
       msg: "Transactionn added!",
-      data: transactionObject,
+      data: { transactionData },
     });
   } catch (error: any) {
     if (!error.statusCode) {
@@ -64,12 +65,21 @@ export const getTransactions: RequestHandler = async (req, res, next) => {
     }
 
     console.log("This are all the available transactions", getAllTransactions);
-    const transactions = getAllTransactions;
+    const transactionsArr = getAllTransactions.map((transaction) => {
+      return {
+        id: transaction.id,
+        amount: transaction.amount,
+        type: transaction.type,
+        description: transaction.description,
+        date: transaction.date,
+        __v: transaction.__v,
+      };
+    });
 
     res.status(httpStatusCodes.OK).json({
       status: "success",
       msg: "All transactions",
-      data: transactions,
+      data: transactionsArr,
     });
   } catch (error: any) {
     if (!error.statusCode) {
@@ -93,11 +103,12 @@ export const getTransaction: RequestHandler = async (req, res, next) => {
 
     console.log("This are all the available transactions", getTransactionById);
     const transactionObject = getTransactionById.toObject();
+    const { _id, ...transactionData } = transactionObject;
 
     res.status(httpStatusCodes.OK).json({
       status: "success",
       msg: "Transaction info",
-      data: transactionObject,
+      data: { transactionData },
     });
   } catch (error: any) {
     if (!error.statusCode) {
