@@ -22,7 +22,6 @@ export const addTransaction = async (data: {
     amount: data.amount,
     type: data.type,
     description: data.description,
-  
   });
 
   return newTransaction;
@@ -50,18 +49,70 @@ export const foundTransactionById = async (data: {
 };
 
 /**
- * Registers a new user.
- * @param data The data of the user to create.
- * @returns Promise<IUser | null>
+ * Retrieves all transactions with pagination.
+ * @param limit Number of transactions to retrieve per page.
+ * @param offset Number of transactions to skip.
+ * @param pageNum Current page number.
+ * @param pageSize Number of transactions per page.
+ * @returns Promise<{ totalItems: number, totalPages: number, currentPage: number, transactions: ITransaction[] }>
  */
-export const foundAllTransactions = async (): Promise<
-  ITransaction[] | null
-> => {
-  const existingTransactions =
-    await transactionRepository.findAllTransactions();
-  if (!existingTransactions) {
-    throw new BaseError("No transactions found!", httpStatusCodes.NOT_FOUND);
-  }
+export const foundAllTransactions = async (
+  pageNum: number,
+  pageSize: number
+): Promise<{
+  totalItems: number;
+  totalPages: number;
+  currentPage: number;
+  transactions: ITransaction[];
+}> => {
+  // Default values if pageNum or pageSize is invalid
+ const pageNumber = isNaN(pageNum) || pageNum < 1 ? 1 : pageNum; 
+  const limit = isNaN(pageSize) || pageSize <= 0 ? 10 : pageSize; // default limit to 10
 
-  return existingTransactions;
+  // Calculate pagination details
+  const offset = (pageNumber - 1) * limit; 
+
+  try {
+    // Get the total count of transactions
+    const totalItems = await transactionRepository.countTransactions();
+
+    // Get the paginated transactions
+    const transactions = await transactionRepository.findAllTransactions(
+      limit,
+      offset
+    );
+
+    // Calculate total pages
+    const totalPages = Math.ceil(totalItems / limit);
+
+    // Return pagination details
+    return {
+      totalItems,
+      totalPages,
+      currentPage: pageNumber,
+      transactions,
+    };
+  } catch (error) {
+    throw new BaseError(
+      "Failed to retrieve transactions",
+      httpStatusCodes.INTERNAL_SERVER
+    );
+  }
 };
+
+// /**
+//  * Registers a new user.
+//  * @param data The data of the user to create.
+//  * @returns Promise<IUser | null>
+//  */
+// export const foundAllTransactions = async (): Promise<
+//   ITransaction[] | null
+// > => {
+//   const existingTransactions =
+//     await transactionRepository.findAllTransactions();
+//   if (!existingTransactions) {
+//     throw new BaseError("No transactions found!", httpStatusCodes.NOT_FOUND);
+//   }
+
+//   return existingTransactions;
+// };

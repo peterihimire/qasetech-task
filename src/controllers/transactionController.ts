@@ -53,33 +53,30 @@ export const addNewTransaction: RequestHandler = async (req, res, next) => {
   }
 };
 
+
+
 /**
  * Get all transaction.
  */
 export const getTransactions: RequestHandler = async (req, res, next) => {
+  const { offset , limit  } = req.query;
+
   try {
-    const getAllTransactions = await foundAllTransactions();
+    const pageNumber = parseInt(offset as string, 10);
+    const limitNumber = parseInt(limit as string, 10);
 
-    if (!getAllTransactions) {
-      throw new BaseError("No transactions found", httpStatusCodes.NOT_FOUND);
-    }
-
-    console.log("This are all the available transactions", getAllTransactions);
-    const transactionsArr = getAllTransactions.map((transaction) => {
-      return {
-        id: transaction.id,
-        amount: transaction.amount,
-        type: transaction.type,
-        description: transaction.description,
-        date: transaction.date,
-        __v: transaction.__v,
-      };
-    });
+    const { totalItems, totalPages, currentPage, transactions } =
+      await foundAllTransactions(pageNumber, limitNumber);
 
     res.status(httpStatusCodes.OK).json({
       status: "success",
-      msg: "All transactions",
-      data: transactionsArr,
+      msg: "Retrieved transactions successfully!",
+      data: {
+        totalItems,
+        totalPages,
+        currentPage,
+        transactions,
+      },
     });
   } catch (error: any) {
     if (!error.statusCode) {
@@ -88,6 +85,42 @@ export const getTransactions: RequestHandler = async (req, res, next) => {
     next(error);
   }
 };
+
+// /**
+//  * Get all transaction.
+//  */
+// export const getTransactions: RequestHandler = async (req, res, next) => {
+//   try {
+//     const getAllTransactions = await foundAllTransactions();
+
+//     if (!getAllTransactions) {
+//       throw new BaseError("No transactions found", httpStatusCodes.NOT_FOUND);
+//     }
+
+//     console.log("This are all the available transactions", getAllTransactions);
+//     const transactionsArr = getAllTransactions.map((transaction) => {
+//       return {
+//         id: transaction.id,
+//         amount: transaction.amount,
+//         type: transaction.type,
+//         description: transaction.description,
+//         date: transaction.date,
+//         __v: transaction.__v,
+//       };
+//     });
+
+//     res.status(httpStatusCodes.OK).json({
+//       status: "success",
+//       msg: "All transactions",
+//       data: transactionsArr,
+//     });
+//   } catch (error: any) {
+//     if (!error.statusCode) {
+//       error.statusCode = httpStatusCodes.INTERNAL_SERVER;
+//     }
+//     next(error);
+//   }
+// };
 
 /**
  * Get transaction.

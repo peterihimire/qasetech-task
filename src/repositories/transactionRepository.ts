@@ -33,9 +33,30 @@ export const findTransactionById = async (
 };
 
 /**
- * Finds all transactions.
- * @returns Promise<ITransaction[] | null>
+ * Counts the total number of transactions.
+ * @returns Promise<number>
  */
-export const findAllTransactions = async (): Promise<ITransaction[] | null> => {
-  return TransactionModel.find().exec();
+export const countTransactions = async (): Promise<number> => {
+  return TransactionModel.countDocuments().exec();
 };
+
+/**
+ * Finds all transactions with pagination.
+ * @param limit Number of transactions to retrieve per page.
+ * @param offset Number of transactions to skip.
+ * @returns Promise<ITransaction[]>
+ */
+export const findAllTransactions = async (
+  limit: number,
+  offset: number
+): Promise<ITransaction[]> => {
+  return TransactionModel.find().skip(offset).limit(limit).exec();
+};
+
+// /**
+//  * Finds all transactions.
+//  * @returns Promise<ITransaction[] | null>
+//  */
+// export const findAllTransactions = async (): Promise<ITransaction[] | null> => {
+//   return TransactionModel.find().exec();
+// };

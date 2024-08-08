@@ -1,5 +1,9 @@
 # Qacetech Challenge API
 
+## Introduction
+
+This project is designed to provide a robust API for managing user authentication and handling financial transactions. It is intended for use in scenarios where secure user management and transaction recording are required.
+
 ## Overview
 
 This project provides an API for handling user authentication and transaction management. It uses Express.js for the server framework and MongoDB for data storage. The API supports user registration, transaction creation, and retrieval of transactions.
@@ -16,6 +20,7 @@ This project provides an API for handling user authentication and transaction ma
 - [Getting Started](#getting-started)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
+- [Environment Variables](#environment-variables)
 - [Running the Server](#running-the-server)
 - [API Endpoints](#api-endpoints)
   - Authentication
@@ -23,12 +28,14 @@ This project provides an API for handling user authentication and transaction ma
 - [Validation & Error Handling](#validation-&-error-handling)
 - [Running Tests](#running-tests)
 - [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
 ## Getting Started
 
 Follow these instructions to set up the project on your local machine.
 
-## Prerequisite
+## Prerequisites
 
 - node.js (>= 14.x)
 - npm (>= 6.x) or yarn (>= 1.x)
@@ -45,34 +52,46 @@ Follow these instructions to set up the project on your local machine.
 
 ## Installation
 
-1.  Clone the repository:
+1. Clone the repository:
 
     ```sh
     git clone https://github.com/peterihimire/qasetech-task.git
     ```
 
-2.  Change directory into the project folder:
+2. Change directory into the project folder:
 
     ```sh
     cd qasetech-task
     ```
 
-3.  Install dependencies:
+3. Install dependencies:
 
     ```sh
     npm install
     ```
 
-4.  Set up the environment variables (See Environment Variables):
-    Create a .env file in the root directory and add copy contents of .env.example to your created .env file.
+4. Set up the environment variables (See Environment Variables):
+
+    Create a `.env` file in the root directory and copy contents of `.env.example` to your created `.env` file.
 
     ```sh
     cp .env.example .env
     ```
 
+## Environment Variables
+
+The project requires several environment variables to be configured. Here’s a brief overview of each:
+
+- `MONGO_URI`: MongoDB connection string.
+- `JWT_SECRET`: Secret key for signing JWT tokens.
+- `COOKIE_SECRET`: Secret key for signing cookies.
+- `PORT`: Port number where the server will run.
+
+Ensure these variables are set in your `.env` file as specified in the [Installation](#installation) section.
+
 ## Running the Server
 
-1.  Start the server:
+1. Start the server:
 
     ```sh
     npm start
@@ -80,9 +99,9 @@ Follow these instructions to set up the project on your local machine.
     yarn start
     ```
 
-2.  Access the API documentation:
+2. Access the API documentation:
 
-    Vsit the postman documentation [Link](https://documenter.getpostman.com/view/12340633/2sA3s1nrJj) of this transaction app.
+    Visit the Postman documentation [Link](https://documenter.getpostman.com/view/12340633/2sA3s1nrJj) of this transaction app.
 
 ## API Endpoints
 
@@ -323,3 +342,15 @@ Contributions are welcome! Please follow these steps to contribute:
 3. Make your changes and commit them.
 4. Push your changes to your forked repository.
 5. Create a pull request.
+
+## License
+
+This project is licensed under the MIT License.
+
+## Contact
+
+For any questions or support, please reach out to:
+
+- Email: peterihimire@gmail.com
+- Github Issues: [Create an issue](https://github.com/peterihimire/qasetech-task/issues)
+
