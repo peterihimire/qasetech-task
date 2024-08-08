@@ -3,7 +3,7 @@
     "typeRoots": ["./src/types", "./node_modules/@types"],
     "target": "es2018",
     "module": "commonjs",
-    "rootDir": "./" /* Set this to the folder containing your source files */,
+    "rootDir": "./",
     "moduleResolution": "node",
     "outDir": "./dist",
     "esModuleInterop": true,

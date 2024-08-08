@@ -2,21 +2,15 @@ import {
   addTransaction,
   foundTransactionById,
   foundAllTransactions,
-} from "../../services/transactionService"; // Adjust the path
+} from "../../services/transactionService"; 
 import * as transactionRepository from "../../repositories/transactionRepository";
 import BaseError from "../../utils/base-error";
 import { httpStatusCodes } from "../../utils/http-status-codes";
 import { ITransaction } from "../../models/Transaction";
+import { SimpleTransaction } from "../../types/types";
 
-// Mock the transactionRepository
+// Mocked transactionRepository
 jest.mock("../../repositories/transactionRepository");
-interface SimpleTransaction {
-  id: string;
-  amount: number;
-  type: string;
-  description: string;
-  date: Date;
-}
 
 const mockedTransactionRepository = transactionRepository as jest.Mocked<
   typeof transactionRepository
@@ -29,7 +23,7 @@ describe("Transaction Service Tests", () => {
 
   describe("addTransaction", () => {
     it("should add a transaction and return it", async () => {
-      // Define the mock transaction data
+      // Mocked transaction data
       const mockTransaction: SimpleTransaction = {
         id: "1234",
         amount: 100,
@@ -38,12 +32,12 @@ describe("Transaction Service Tests", () => {
         date: new Date(),
       };
 
-      // Mock the implementation of createTransaction
+      // Mocked implementation of createTransaction
       mockedTransactionRepository.createTransaction.mockResolvedValue(
         mockTransaction as unknown as ITransaction
       );
 
-      // Call the service method
+      // Called the addTransaction service method
       const result = await addTransaction({
         amount: 100,
         type: "credit",

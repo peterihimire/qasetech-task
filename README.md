@@ -1,4 +1,4 @@
-# Blog Challenge API
+# Qacetech Challenge API
 
 ## Overview
 
@@ -40,6 +40,8 @@ Follow these instructions to set up the project on your local machine.
 - cookie parser
 - cors
 - bcrypt
+- Express-validator
+- dotenv
 
 ## Installation
 
@@ -62,7 +64,7 @@ Follow these instructions to set up the project on your local machine.
     ```
 
 4.  Set up the environment variables (See Environment Variables):
-    Create a .env file in the root directory and add the necessary environment variables.
+    Create a .env file in the root directory and add copy contents of .env.example to your created .env file.
 
     ```sh
     cp .env.example .env
@@ -80,7 +82,7 @@ Follow these instructions to set up the project on your local machine.
 
 2.  Access the API documentation:
 
-    Vsit the postman documentation [Link](https://documenter.getpostman.com/view/12340633/2sA3kUFhDT) of this blog app.
+    Vsit the postman documentation [Link](https://documenter.getpostman.com/view/12340633/2sA3s1nrJj) of this transaction app.
 
 ## API Endpoints
 
@@ -139,12 +141,11 @@ Authorization: Bearer <token>
   ```json
   {
     "status": "success",
-    "msg": "Login successful!",
+    "msg": "Signin successful",
     "data": {
-      "username": "peter4lovereal",
-      "email": "peterihimire@gmail.com",
-      "acctId": "51a2dee1-b89d-42db-bf85-74380e5ea000",
-      "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1MWEyZGVlMS1iODlkLTQyZGItYmY4NS03NDM4MGU1ZWEwMDAiLCJlbWFpbCI6InBldGVyaWhpbWlyZUBnbWFpbC5jb20iLCJpYXQiOjE3MjEzNzM5OTcsImV4cCI6MTcyMTQ0NTk5N30.JnBWEl93qojw5FteXgr7X9guMt0NOy9H9PqtpHGTWZo"
+        "_id": "66b47ff1bc6317117465f5f1",
+        "username": "tupacamaru",
+        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YjQ3ZmYxYmM2MzE3MTE3NDY1ZjVmMSIsInVzZXJuYW1lIjoidHVwYWNhbWFydSIsImlhdCI6MTcyMzEwNTQ4MywiZXhwIjoxNzIzMTA5MDgzfQ.LX17oA4A27qxkHqEqEuvUk_-eAXsTJmh-LA0_MhmgdQ"
     }
   }
   ```
@@ -167,9 +168,10 @@ Authorization: Bearer <token>
   ```json
   {
     "status": "success",
+    "msg": "Token refreshed successfully",
     "data": {
-      "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxNzc2NGNhMi03MTA0LTQyMmItYjU4MC01Yjc3MWI0Yzg4ODIiLCJlbWFpbCI6InBldGVyaWhpbWlyZUBnbWFpbC5jb20iLCJpYXQiOjE3MjE0MTM2NTgsImV4cCI6MTcyMTQxNDU1OH0.zTxDP-MC-EYAlr21Dc7DcFlM_mpn3_FF9-Lo2OF1JLg",
-      "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxNzc2NGNhMi03MTA0LTQyMmItYjU4MC01Yjc3MWI0Yzg4ODIiLCJlbWFpbCI6InBldGVyaWhpbWlyZUBnbWFpbC5jb20iLCJpYXQiOjE3MjE0MTM2NTgsImV4cCI6MTcyMjAxODQ1OH0.jN9Km5pXKnH8mKjG9vPTuddN5QZXlWJjydVUtESPsi4"
+        "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YjQ3ZmYxYmM2MzE3MTE3NDY1ZjVmMSIsInVzZXJuYW1lIjoidHVwYWNhbWFydSIsImlhdCI6MTcyMzEwNTM5NywiZXhwIjoxNzIzMTA4OTk3fQ.iCfTCDqcD4QaPs5r33U0KX1JZErZAw6w9VIvbAVq7NI",
+        "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YjQ3ZmYxYmM2MzE3MTE3NDY1ZjVmMSIsInVzZXJuYW1lIjoidHVwYWNhbWFydSIsImlhdCI6MTcyMzEwNTM5NywiZXhwIjoxNzIzNzEwMTk3fQ.JsdBxpebliNunwZ4Q91qmCE8-Nzj2W9VkVaK2cHQgoo"
     }
   }
   ```

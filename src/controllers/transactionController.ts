@@ -9,7 +9,7 @@ import {
 } from "../services/transactionService";
 
 /**
- * Registers a new user.
+ * Add new transaction.
  */
 export const addNewTransaction: RequestHandler = async (req, res, next) => {
   const { amount, type, date, description } = req.body;
@@ -54,7 +54,7 @@ export const addNewTransaction: RequestHandler = async (req, res, next) => {
 };
 
 /**
- * Registers a new user.
+ * Get all transaction.
  */
 export const getTransactions: RequestHandler = async (req, res, next) => {
   try {
@@ -90,7 +90,7 @@ export const getTransactions: RequestHandler = async (req, res, next) => {
 };
 
 /**
- * Registers a new user.
+ * Get transaction.
  */
 export const getTransaction: RequestHandler = async (req, res, next) => {
   const { id } = req.params;
