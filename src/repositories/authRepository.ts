@@ -32,7 +32,7 @@ export const createUser = async (data: {
 }): Promise<IUser | null> => {
   const newUser = new UserModel({
     username: data.username,
-    password: data.password, // Password should be hashed before saving
+    password: data.password,
   });
 
   await newUser.save();

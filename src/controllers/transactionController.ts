@@ -53,13 +53,11 @@ export const addNewTransaction: RequestHandler = async (req, res, next) => {
   }
 };
 
-
-
 /**
- * Get all transaction.
+ * Get all transaction with pagination.
  */
 export const getTransactions: RequestHandler = async (req, res, next) => {
-  const { offset , limit  } = req.query;
+  const { offset, limit } = req.query;
 
   try {
     const pageNumber = parseInt(offset as string, 10);
@@ -86,44 +84,8 @@ export const getTransactions: RequestHandler = async (req, res, next) => {
   }
 };
 
-// /**
-//  * Get all transaction.
-//  */
-// export const getTransactions: RequestHandler = async (req, res, next) => {
-//   try {
-//     const getAllTransactions = await foundAllTransactions();
-
-//     if (!getAllTransactions) {
-//       throw new BaseError("No transactions found", httpStatusCodes.NOT_FOUND);
-//     }
-
-//     console.log("This are all the available transactions", getAllTransactions);
-//     const transactionsArr = getAllTransactions.map((transaction) => {
-//       return {
-//         id: transaction.id,
-//         amount: transaction.amount,
-//         type: transaction.type,
-//         description: transaction.description,
-//         date: transaction.date,
-//         __v: transaction.__v,
-//       };
-//     });
-
-//     res.status(httpStatusCodes.OK).json({
-//       status: "success",
-//       msg: "All transactions",
-//       data: transactionsArr,
-//     });
-//   } catch (error: any) {
-//     if (!error.statusCode) {
-//       error.statusCode = httpStatusCodes.INTERNAL_SERVER;
-//     }
-//     next(error);
-//   }
-// };
-
 /**
- * Get transaction.
+ * Get transaction
  */
 export const getTransaction: RequestHandler = async (req, res, next) => {
   const { id } = req.params;

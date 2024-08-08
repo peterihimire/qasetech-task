@@ -4,7 +4,7 @@ const config: Config = {
   clearMocks: true,
   collectCoverage: true,
   coverageDirectory: "coverage",
-  coverageProvider: "v8", // You can use 'babel' or 'v8' depending on your preference
+  coverageProvider: "v8",
   preset: "ts-jest",
   testEnvironment: "node",
   testMatch: ["**/__tests__/**/*.ts", "**/?(*.)+(spec|test).ts"],

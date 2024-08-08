@@ -117,10 +117,6 @@ export const refresh: RequestHandler = async (req, res, next) => {
  */
 export const logout: RequestHandler = (req, res) => {
   res
-    .clearCookie("accessToken", {
-      secure: false,
-      sameSite: "lax",
-    })
     .clearCookie("refreshToken", {
       secure: false,
       sameSite: "lax",

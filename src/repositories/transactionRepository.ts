@@ -52,11 +52,3 @@ export const findAllTransactions = async (
 ): Promise<ITransaction[]> => {
   return TransactionModel.find().skip(offset).limit(limit).exec();
 };
-
-// /**
-//  * Finds all transactions.
-//  * @returns Promise<ITransaction[] | null>
-//  */
-// export const findAllTransactions = async (): Promise<ITransaction[] | null> => {
-//   return TransactionModel.find().exec();
-// };

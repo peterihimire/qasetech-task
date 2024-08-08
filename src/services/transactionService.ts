@@ -65,12 +65,11 @@ export const foundAllTransactions = async (
   currentPage: number;
   transactions: ITransaction[];
 }> => {
-  // Default values if pageNum or pageSize is invalid
- const pageNumber = isNaN(pageNum) || pageNum < 1 ? 1 : pageNum; 
-  const limit = isNaN(pageSize) || pageSize <= 0 ? 10 : pageSize; // default limit to 10
+  const pageNumber = isNaN(pageNum) || pageNum < 1 ? 1 : pageNum;
+  const limit = isNaN(pageSize) || pageSize <= 0 ? 10 : pageSize;
 
   // Calculate pagination details
-  const offset = (pageNumber - 1) * limit; 
+  const offset = (pageNumber - 1) * limit;
 
   try {
     // Get the total count of transactions
@@ -99,20 +98,3 @@ export const foundAllTransactions = async (
     );
   }
 };
-
-// /**
-//  * Registers a new user.
-//  * @param data The data of the user to create.
-//  * @returns Promise<IUser | null>
-//  */
-// export const foundAllTransactions = async (): Promise<
-//   ITransaction[] | null
-// > => {
-//   const existingTransactions =
-//     await transactionRepository.findAllTransactions();
-//   if (!existingTransactions) {
-//     throw new BaseError("No transactions found!", httpStatusCodes.NOT_FOUND);
-//   }
-
-//   return existingTransactions;
-// };

@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import { sign, verify } from "jsonwebtoken";
 import { IUser } from "../models/User";
-import * as authRepository from "../repositories/authRepository"; // Import repository functions
+import * as authRepository from "../repositories/authRepository";
 import BaseError from "../utils/base-error";
 import { httpStatusCodes } from "../utils/http-status-codes";
 
@@ -81,9 +81,6 @@ export const loginUser = async (
     JWT_REFRESH_KEY,
     { expiresIn: "7d" } // Refresh token expiration
   );
-
-  // // Store the refresh token in the database or other storage
-  // await authRepository.saveRefreshToken(foundUser.id, refreshToken);
 
   return { accessToken, refreshToken, user: foundUser };
 };
