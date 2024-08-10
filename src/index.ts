@@ -4,7 +4,6 @@ import app from "./app";
 
 dotenv.config();
 
-// Ensure environment variables are defined
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 8084;
 const HOST = "0.0.0.0";
 const MONGOURI = process.env.MONGO_URI;
@@ -21,7 +20,7 @@ const connectWithRetry = async () => {
     console.log("MongoDB connection was successful...");
   } catch (err) {
     console.error("Error connecting to MongoDB:", err);
-    setTimeout(connectWithRetry, 5000); // Retry after 5 seconds
+    setTimeout(connectWithRetry, 5000);
   }
 };
 

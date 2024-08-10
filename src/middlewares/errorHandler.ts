@@ -21,7 +21,6 @@ export const returnError: ErrorRequestHandler = (err, req, res, next) => {
     return next(err);
   }
 
-  console.log("Lets check more to see why ...", err.errorCode); // prior we had err.code
   res.status(err.errorCode || 500);
   res.json({
     status: "fail",

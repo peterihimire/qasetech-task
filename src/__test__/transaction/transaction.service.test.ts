@@ -12,13 +12,6 @@ import { SimpleTransaction } from "../../types/types";
 // Mocked transactionRepository
 jest.mock("../../repositories/transactionRepository");
 
-interface filteredTransaction {
-  totalItems: number;
-  totalPages: number;
-  currentPage: number;
-  transactions: SimpleTransaction[];
-}
-
 const mockedTransactionRepository = transactionRepository as jest.Mocked<
   typeof transactionRepository
 >;

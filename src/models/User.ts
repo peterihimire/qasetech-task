@@ -6,7 +6,7 @@ export interface IUser extends Document {
   password: string;
 }
 
-// Define the schema for a User
+// Defined the schema for a User
 const UserSchema: Schema = new Schema({
   username: { type: String, required: true },
   password: { type: String, required: true },
