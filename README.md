@@ -83,8 +83,9 @@ Follow these instructions to set up the project on your local machine.
 The project requires several environment variables to be configured. Here’s a brief overview of each:
 
 - `MONGO_URI`: MongoDB connection string.
-- `JWT_SECRET`: Secret key for signing JWT tokens.
-- `COOKIE_SECRET`: Secret key for signing cookies.
+_ `NODE_ENV`: Node environment either development or production
+- `JWT_KEY`: Secret key for signing JWT tokens.
+- `JWT_REFRESH_KEY`: Secret key for signing the refresh tokens.
 - `PORT`: Port number where the server will run.
 
 Ensure these variables are set in your `.env` file as specified in the [Installation](#installation) section.
@@ -163,7 +164,7 @@ Authorization: Bearer <token>
     "msg": "Signin successful",
     "data": {
         "_id": "66b47ff1bc6317117465f5f1",
-        "username": "tupacamaru",
+        "username": "benji4life",
         "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YjQ3ZmYxYmM2MzE3MTE3NDY1ZjVmMSIsInVzZXJuYW1lIjoidHVwYWNhbWFydSIsImlhdCI6MTcyMzEwNTQ4MywiZXhwIjoxNzIzMTA5MDgzfQ.LX17oA4A27qxkHqEqEuvUk_-eAXsTJmh-LA0_MhmgdQ"
     }
   }
